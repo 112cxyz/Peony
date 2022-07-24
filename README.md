@@ -3,7 +3,3 @@
  
  https://discord.gg/Q2Cpp3ebvr
 
-
-# funny branch
-
-llsc12 made it i made main 
