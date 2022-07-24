@@ -18,11 +18,29 @@ struct ContentView: View {
     @State var issue = false
     @State var msg = ""
     @State var url = URL(string: "https://i.waifu.pics/cKe~bpZ.jpg")
+    @State var nsfwtoggle = false
     var body: some View {
         List {
+            Text("Hentie")
+                .font(.largeTitle)
             WebImage(url: url)
                 .resizable()
                 .scaledToFit()
+            Link(destination: url!) {
+                Text("Source Image")
+            }
+            HStack {
+                Button("Toggle NSFW")
+                {
+                    if nsfwtoggle == false {
+                        nsfwtoggle = true
+                    }
+                    else {
+                        nsfwtoggle = false
+                    }
+                    Task { await getImage() }
+                }
+            }
             
         }
         .task {
@@ -35,11 +53,21 @@ struct ContentView: View {
     
     func getImage() async -> Void {
         do {
-            let (data, _) = try await URLSession.shared.data(from: URL(string: "https://api.waifu.pics/sfw/waifu")!)
-            let json = try JSONDecoder()
-                .decode(response.self, from: data)
-            let photourl = URL(string: json.url)
-            url = photourl
+            if nsfwtoggle {
+                let (data, _) = try await URLSession.shared.data(from: URL(string: "https://api.waifu.pics/nsfw/waifu")!)
+                let json = try JSONDecoder()
+                    .decode(response.self, from: data)
+                let photourl = URL(string: json.url)
+                url = photourl
+            }
+            else {
+                let (data, _) = try await URLSession.shared.data(from: URL(string: "https://api.waifu.pics/sfw/waifu")!)
+                let json = try JSONDecoder()
+                    .decode(response.self, from: data)
+                let photourl = URL(string: json.url)
+                url = photourl
+            }
+
         } catch {
             print(error)
             msg = error.localizedDescription

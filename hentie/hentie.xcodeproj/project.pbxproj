@@ -11,6 +11,7 @@
 		DA075C7B288DC1D5009588F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA075C7A288DC1D5009588F8 /* ContentView.swift */; };
 		DA075C7D288DC1D8009588F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA075C7C288DC1D8009588F8 /* Assets.xcassets */; };
 		DA075C80288DC1D8009588F8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA075C7F288DC1D8009588F8 /* Preview Assets.xcassets */; };
+		DA5AED68288DFE83006E39EC /* hentie.png in Resources */ = {isa = PBXBuildFile; fileRef = DA5AED67288DFE83006E39EC /* hentie.png */; };
 		DA8684C8288DD25000C24144 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = DA8684C7288DD25000C24144 /* SDWebImageSwiftUI */; };
 /* End PBXBuildFile section */
 
@@ -20,6 +21,7 @@
 		DA075C7A288DC1D5009588F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DA075C7C288DC1D8009588F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA075C7F288DC1D8009588F8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DA5AED67288DFE83006E39EC /* hentie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hentie.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				DA075C78288DC1D5009588F8 /* hentieApp.swift */,
 				DA075C7A288DC1D5009588F8 /* ContentView.swift */,
+				DA5AED67288DFE83006E39EC /* hentie.png */,
 				DA075C7C288DC1D8009588F8 /* Assets.xcassets */,
 				DA075C7E288DC1D8009588F8 /* Preview Content */,
 			);
@@ -134,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA075C80288DC1D8009588F8 /* Preview Assets.xcassets in Resources */,
+				DA5AED68288DFE83006E39EC /* hentie.png in Resources */,
 				DA075C7D288DC1D8009588F8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
