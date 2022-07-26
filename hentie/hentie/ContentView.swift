@@ -21,6 +21,7 @@ struct ContentView: View {
     @State var nsfwtoggle = false
     @State var category = "Category: Waifu"
     var body: some View {
+        VStack {
         List {
             Text("need to name it")
                 .font(.largeTitle)
@@ -46,11 +47,13 @@ struct ContentView: View {
                     }
                     Task { await getImage() }
                 }
+        }
+
             VStack {
                 Text("not here")
             }
+
         }
-        
         
         .task {
             await getImage()
