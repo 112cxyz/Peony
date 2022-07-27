@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  hentie
+//  Peony
 //
 //  Created by Toby Fox on 24/07/2022.
 //
@@ -20,12 +20,16 @@ struct ContentView: View {
     @State var url = URL(string: "https://i.waifu.pics/cKe~bpZ.jpg")
     @State var nsfwtoggle = false
     @State var category = "Category: Waifu"
+    @State var megumin = ""
+    @State var forcedsubject = ""
     var body: some View {
         VStack {
+
         List {
-            Text("need to name it")
-                .font(.largeTitle)
-                .multilineTextAlignment(.leading)
+            Text("Peony")
+                .font(.title)
+    .multilineTextAlignment(.leading)
+
             Text(category)
             WebImage(url: url)
                 .resizable()
@@ -37,30 +41,42 @@ struct ContentView: View {
                 Task { await getImage() }
             }
 
-                Button("Toggle NSFW")
-                {
-                    if nsfwtoggle == false {
-                        nsfwtoggle = true
-                    }
-                    else {
-                        nsfwtoggle = false
-                    }
-                    Task { await getImage() }
-                }
+
         }
+            .task {
+                await getImage()
+                }
+            .refreshable {
+                Task { await getImage() }
+                }
 
             VStack {
-                Text("not here")
-            }
-
-        }
+                HStack {
+                    Text("Made by 112c")
+                        .multilineTextAlignment(.leading)
+                        .padding(.leading, 4.0)
+                    Spacer()
+                    Text(megumin).font(.caption)
+                        Menu {
+                        Button ("Show 18+")
+                        {
+                            if nsfwtoggle == false {
+                                nsfwtoggle = true
+                            }
+                            else {
+                                nsfwtoggle = false
+                            }
+                            Task { await getImage() }
+                        }
+                        }label: {
+                            Label("", systemImage: "gear")
+                        }
+                }
+                .padding(.bottom, 0.8)
+                
+                }
         
-        .task {
-            await getImage()
         }
-        .refreshable {
-            Task { await getImage() }
-        } 
     }
     
     func getImage() async -> Void {
@@ -74,6 +90,7 @@ struct ContentView: View {
                     let photourl = URL(string: json.url)
                     url = photourl
                     category = "Category: Waifu"
+                    megumin = ""
                 }
                 else {
                     let (data, _) = try await URLSession.shared.data(from: URL(string: "https://api.waifu.pics/nsfw/neko")!)
@@ -82,11 +99,12 @@ struct ContentView: View {
                     let photourl = URL(string: json.url)
                     url = photourl
                     category = "Category: Neko"
+                    megumin = ""
                 }
                 
             }
             else {
-                let catgornum = Int.random(in: 1..<14)
+                let catgornum = Int.random(in: 1..<15)
                 if catgornum == 1 {
                     let catgorurl = "https://api.waifu.pics/sfw/waifu"
                     let (data, _) = try await URLSession.shared.data(from: URL(string: catgorurl)!)
@@ -95,6 +113,7 @@ struct ContentView: View {
                     let photourl = URL(string: json.url)
                     url = photourl
                     category = "Category: Waifu"
+                    megumin = ""
                 }
                 if catgornum == 2 {
                     let catgorurl = "https://api.waifu.pics/sfw/neko"
@@ -104,6 +123,7 @@ struct ContentView: View {
                     let photourl = URL(string: json.url)
                     url = photourl
                     category = "Category: Neko"
+                    megumin = ""
                 }
                 if catgornum == 3 {
                     let catgorurl = "https://api.waifu.pics/sfw/shinobu"
@@ -113,6 +133,7 @@ struct ContentView: View {
                     let photourl = URL(string: json.url)
                     url = photourl
                     category = "Category: Shinobu"
+                    megumin = "arawagi, oops i fwubbed"
                 }
                 if catgornum == 4 {
                     let catgorurl = "https://api.waifu.pics/sfw/megumin"
@@ -122,6 +143,7 @@ struct ContentView: View {
                     let photourl = URL(string: json.url)
                     url = photourl
                     category = "Category: Megumin💥"
+                    megumin = "Explosion Magic!"
                 }
                 if catgornum == 5 {
                     let catgorurl = "https://api.waifu.pics/sfw/handhold"
@@ -131,6 +153,7 @@ struct ContentView: View {
                     let photourl = URL(string: json.url)
                     url = photourl
                     category = "Category: Handholding"
+                    megumin = ""
                 }
                 if catgornum == 6 {
                     let catgorurl = "https://api.waifu.pics/sfw/cuddle"
@@ -140,6 +163,7 @@ struct ContentView: View {
                     let photourl = URL(string: json.url)
                     url = photourl
                     category = "Category: Cuddle"
+                    megumin = ""
                 }
                 if catgornum == 7 {
                     let catgorurl = "https://api.waifu.pics/sfw/cry"
@@ -149,6 +173,7 @@ struct ContentView: View {
                     let photourl = URL(string: json.url)
                     url = photourl
                     category = "Category: Cry"
+                    megumin = ""
                 }
                 if catgornum == 8 {
                     let catgorurl = "https://api.waifu.pics/sfw/hug"
@@ -158,6 +183,7 @@ struct ContentView: View {
                     let photourl = URL(string: json.url)
                     url = photourl
                     category = "Category: Hug"
+                    megumin = ""
                 }
                 if catgornum == 9 {
                     let catgorurl = "https://api.waifu.pics/sfw/awoo"
@@ -167,6 +193,7 @@ struct ContentView: View {
                     let photourl = URL(string: json.url)
                     url = photourl
                     category = "Category: Awoo"
+                    megumin = ""
                 }
                 if catgornum == 10 {
                     let catgorurl = "https://api.waifu.pics/sfw/kiss"
@@ -176,6 +203,7 @@ struct ContentView: View {
                     let photourl = URL(string: json.url)
                     url = photourl
                     category = "Category: Kiss"
+                    megumin = ""
                 }
                 if catgornum == 11 {
                     let catgorurl = "https://api.waifu.pics/sfw/lick"
@@ -185,6 +213,7 @@ struct ContentView: View {
                     let photourl = URL(string: json.url)
                     url = photourl
                     category = "Category: Lick"
+                    megumin = ""
                 }
                 if catgornum == 12 {
                     let catgorurl = "https://api.waifu.pics/sfw/pat"
@@ -194,8 +223,9 @@ struct ContentView: View {
                     let photourl = URL(string: json.url)
                     url = photourl
                     category = "Category: Pat"
+                    megumin = ""
                 }
-                if catgornum == 12 {
+                if catgornum == 13 {
                     let catgorurl = "https://api.waifu.pics/sfw/smug"
                     let (data, _) = try await URLSession.shared.data(from: URL(string: catgorurl)!)
                     let json = try JSONDecoder()
@@ -203,8 +233,9 @@ struct ContentView: View {
                     let photourl = URL(string: json.url)
                     url = photourl
                     category = "Category: Smug"
+                    megumin = ""
                 }
-                if catgornum == 13 {
+                if catgornum == 14 {
                     let catgorurl = "https://api.waifu.pics/sfw/bonk"
                     let (data, _) = try await URLSession.shared.data(from: URL(string: catgorurl)!)
                     let json = try JSONDecoder()
@@ -212,6 +243,7 @@ struct ContentView: View {
                     let photourl = URL(string: json.url)
                     url = photourl
                     category = "Category: Bonk"
+                    megumin = ""
                 }
                 
                 
@@ -231,17 +263,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .toolbar {
-                ToolbarItemGroup(placement: .bottomBar) {
-                    Button("First") {
-                        print("Pressed")
-                    }
-
-                    Button("Second") {
-                        print("Pressed")
-                    }
-                }
-    }
+            .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro Max"))
     }
 }
 
